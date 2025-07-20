@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>By 187</title>
+        <link href="popup.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="popup-container">
+            <div class="form">
+                <input id="blacklist-input" class="input" placeholder="Add to blacklist" type="text" />
+                <span class="input-border"></span>
+            </div>
+
+            <ul id="blacklist-items" class="blacklist">
+                <!-- list -->
+            </ul>
+
+            <button id="sort-btn" class="sort-button">
+                <span class="IconContainer">
+                    <svg viewBox="0 0 24 24" height="1.2em" class="icon">
+                        <path
+                            fill="currentColor"
+                            d="M19,17H22L18,21L14,17H17V3H19V17M10,15H7V21H5V15H2L6,11L10,15M12,9L8,5H11V3H13V5H16L12,9Z"
+                        />
+                    </svg>
+                </span>
+                <p class="text">Sort</p>
+            </button>
+        </div>
+
+        <script src="popup.js" type="module"></script>
+    </body>
+</html>
