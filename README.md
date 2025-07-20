@@ -1,5 +1,7 @@
 # FB Sorter Extension
 
+![Extension Preview](screenshots/preview.png)
+
 Chrome extension for sorting Facebook marketplace tabs with blacklisted keywords and seller rating.
 
 ## Features
