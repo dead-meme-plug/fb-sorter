@@ -19,7 +19,9 @@ export class BlacklistService {
 
     async setBlacklist(items) {
         await chrome.storage.sync.set({
-            [this.STORAGE_KEY]: items.map((item) => item.toLowerCase()),
+            [this.STORAGE_KEY]: items.map((item) =>
+                item.toLowerCase().replace(/\s+/g, " ").trim()
+            ),
         });
     }
 

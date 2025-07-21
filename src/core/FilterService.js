@@ -33,9 +33,15 @@ export class FilterService {
                                     'svg[viewBox="0 0 20 20"]'
                                 ).length > 0;
 
-                            const isBlacklisted = blacklist.some((term) =>
-                                description.includes(term.toLowerCase())
-                            );
+                            const isBlacklisted = blacklist.some((term) => {
+                                const lowerTerm = term.toLowerCase();
+                                return (
+                                    description.includes(lowerTerm) ||
+                                    description.includes(
+                                        lowerTerm.replace(/\s+/g, " ").trim()
+                                    )
+                                );
+                            });
 
                             return isBlacklisted || hasRating;
                         } catch (e) {
