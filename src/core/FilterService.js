@@ -20,8 +20,7 @@ export class FilterService {
           func: (blacklist) => {
             try {
               const descElement = document.querySelector(
-                ".xz9dl7a.xyri2b.xsag5q8.x1c1uobl.x126k92a span.x6zurak, " +
-                  "span.x193iq5w.xeuugli.x13faqbe.x1vvkbs.x10flsy6.x1lliihq.x1s928wv"
+                ".xz9dl7a.xyri2b.xsag5q8.x1c1uobl.x126k92a span"
               );
 
               const description =
@@ -37,9 +36,16 @@ export class FilterService {
                 ratingContainer.querySelectorAll('svg[viewBox="0 0 20 20"]')
                   .length > 0;
 
-              const isBlacklisted = blacklist.some((term) =>
-                description.includes(term)
-              );
+              const isBlacklisted = blacklist.some((term) => {
+                const normalizedTerm = term
+                  .toLowerCase()
+                  .replace(/\s+/g, " ")
+                  .trim();
+                return (
+                  description.includes(normalizedTerm) ||
+                  description.split(/\s+/).includes(normalizedTerm)
+                );
+              });
 
               console.log("Filter debug:", {
                 description,

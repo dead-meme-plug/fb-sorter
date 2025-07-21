@@ -1,28 +1,28 @@
-import { BlacklistService } from '../core/BlacklistService.js'
+import { BlacklistService } from "../core/BlacklistService.js";
 
 class PopupUI {
-    constructor() {
-        this.blacklistService = new BlacklistService()
-        this.initElements()
-        this.loadBlacklist()
-        this.setupEventListeners()
-    }
+  constructor() {
+    this.blacklistService = new BlacklistService();
+    this.initElements();
+    this.loadBlacklist();
+    this.setupEventListeners();
+  }
 
-    initElements() {
-        this.input = document.getElementById('blacklist-input')
-        this.list = document.getElementById('blacklist-items')
-        this.sortBtn = document.getElementById('sort-btn')
-    }
+  initElements() {
+    this.input = document.getElementById("blacklist-input");
+    this.list = document.getElementById("blacklist-items");
+    this.sortBtn = document.getElementById("sort-btn");
+  }
 
-    async loadBlacklist() {
-        const blacklist = await this.blacklistService.getBlacklist()
-        this.renderBlacklist(blacklist)
-    }
+  async loadBlacklist() {
+    const blacklist = await this.blacklistService.getBlacklist();
+    this.renderBlacklist(blacklist);
+  }
 
-    renderBlacklist(items) {
-        this.list.innerHTML = items
-            .map(
-                (item) => `
+  renderBlacklist(items) {
+    this.list.innerHTML = items
+      .map(
+        (item) => `
       <li class="mdc-list-item" data-word="${item}" style="opacity: 0; transform: translateY(10px);">
         <span class="mdc-list-item__text">${item}</span>
         <button class="bin-button">
@@ -40,56 +40,56 @@ class PopupUI {
           </svg>
         </button>
       </li>
-    `,
-            )
-            .join('')
+    `
+      )
+      .join("");
 
-        setTimeout(() => {
-            const items = this.list.querySelectorAll('.mdc-list-item')
-            items.forEach((item) => {
-                item.style.opacity = '1'
-                item.style.transform = 'translateY(0)'
-            })
-        }, 10)
+    setTimeout(() => {
+      const items = this.list.querySelectorAll(".mdc-list-item");
+      items.forEach((item) => {
+        item.style.opacity = "1";
+        item.style.transform = "translateY(0)";
+      });
+    }, 10);
+  }
+
+  setupEventListeners() {
+    this.input.addEventListener("keypress", (e) => {
+      if (e.key === "Enter" && this.input.value.trim()) {
+        this.addToBlacklist(this.input.value.trim());
+        this.input.value = "";
+      }
+    });
+
+    this.list.addEventListener("click", (e) => {
+      const button = e.target.closest(".bin-button");
+      if (button) {
+        const item = button.closest("[data-word]");
+        this.removeFromBlacklist(item.dataset.word);
+      }
+    });
+
+    this.sortBtn.addEventListener("click", () => {
+      chrome.runtime.sendMessage({ action: "closeBlacklistedTabs" });
+      window.close();
+    });
+  }
+
+  async addToBlacklist(word) {
+    await this.blacklistService.addToBlacklist(word);
+    this.loadBlacklist();
+  }
+
+  async removeFromBlacklist(word) {
+    const item = this.list.querySelector(`[data-word="${word}"]`);
+    if (item) {
+      item.style.transition = "opacity 0.3s ease";
+      item.style.opacity = "0";
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      await this.blacklistService.removeFromBlacklist(word);
+      this.loadBlacklist();
     }
-
-    setupEventListeners() {
-        this.input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && this.input.value.trim()) {
-                this.addToBlacklist(this.input.value.trim())
-                this.input.value = ''
-            }
-        })
-
-        this.list.addEventListener('click', (e) => {
-            const button = e.target.closest('.bin-button')
-            if (button) {
-                const item = button.closest('[data-word]')
-                this.removeFromBlacklist(item.dataset.word)
-            }
-        })
-
-        this.sortBtn.addEventListener('click', () => {
-            chrome.runtime.sendMessage({ action: 'closeBlacklistedTabs' })
-            window.close()
-        })
-    }
-
-    async addToBlacklist(word) {
-        await this.blacklistService.addToBlacklist(word)
-        this.loadBlacklist()
-    }
-
-    async removeFromBlacklist(word) {
-        const item = this.list.querySelector(`[data-word="${word}"]`)
-        if (item) {
-            item.style.transition = 'opacity 0.3s ease'
-            item.style.opacity = '0'
-            await new Promise((resolve) => setTimeout(resolve, 300))
-            await this.blacklistService.removeFromBlacklist(word)
-            this.loadBlacklist()
-        }
-    }
+  }
 }
 
-new PopupUI()
+new PopupUI();
