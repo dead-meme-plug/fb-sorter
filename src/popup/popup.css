@@ -1,246 +1,250 @@
 :root {
-    --rosewater: #f5e0dc;
-    --red: #f38ba8;
-    --text: #cdd6f4;
-    --surface0: #313244;
-    --base: #1e1e2e;
-    --mauve: #cba6f7;
-    --lavender: #b4befe;
+  --rosewater: #f5e0dc;
+  --red: #f38ba8;
+  --text: #cdd6f4;
+  --surface0: #313244;
+  --base: #1e1e2e;
+  --mauve: #cba6f7;
+  --lavender: #b4befe;
 }
 
 body {
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    background-color: var(--base);
-    color: var(--text);
-    margin: 0;
-    padding: 0;
-    min-width: 300px;
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  background-color: var(--base);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  min-width: 300px;
 }
 
 .popup-container {
-    padding: 16px;
-    background-color: var(--base);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    border-radius: 20px;
+  padding: 16px;
+  background-color: var(--base);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 20px;
 }
 
 .form {
-    --width-of-input: 100%;
-    --border-height: 1px;
-    --border-before-color: var(--surface0);
-    --border-after-color: var(--mauve);
-    --input-hovered-color: rgba(180, 190, 254, 0.1);
-    position: relative;
-    width: var(--width-of-input);
-    transition: all 0.3s ease;
-    border-radius: 16px;
-    overflow: hidden;
+  --width-of-input: 100%;
+  --border-height: 1px;
+  --border-before-color: var(--surface0);
+  --border-after-color: var(--mauve);
+  --input-hovered-color: rgba(180, 190, 254, 0.1);
+  position: relative;
+  width: var(--width-of-input);
+  transition: all 0.3s ease;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .input {
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 500;
-    color: var(--text);
-    font-size: 0.9rem;
-    background-color: var(--surface0);
-    width: 100%;
-    box-sizing: border-box;
-    padding: 12px 16px;
-    border: none;
-    border-radius: 16px;
-    transition: all 0.3s ease;
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 500;
+  color: var(--text);
+  font-size: 0.9rem;
+  background-color: var(--surface0);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 16px;
+  transition: all 0.3s ease;
 }
 
 .input::placeholder {
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 400;
-    color: var(--subtext1);
-    opacity: 0.8;
-    transition: opacity 0.2s ease;
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 400;
+  color: var(--subtext1);
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
 }
 
 .input:focus::placeholder {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 .input-border {
-    position: absolute;
-    background: var(--border-after-color);
-    width: 0%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    transition: 0.3s;
+  position: absolute;
+  background: var(--border-after-color);
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s;
 }
 
 .input:hover {
-    background: var(--input-hovered-color);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: var(--input-hovered-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .input:focus {
-    outline: none;
-    background: var(--input-hovered-color);
+  outline: none;
+  background: var(--input-hovered-color);
 }
 
 .input:focus ~ .input-border {
-    width: 100%;
+  width: 100%;
 }
 
 .blacklist {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    max-height: 200px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    border-radius: 16px;
-    padding: 8px;
-    will-change: contents;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 16px;
+  padding: 8px;
+  will-change: contents;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .blacklist::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .blacklist li {
-    padding: 10px 16px 10px 16px;
+  padding: 10px 16px 10px 16px;
 }
 
 .bin-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    background-color: var(--red);
-    cursor: pointer;
-    border: 2px solid var(--flamingo);
-    transition: all 0.3s ease;
-    padding: 0;
-    margin: 0;
-    color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: var(--red);
+  cursor: pointer;
+  border: 2px solid var(--flamingo);
+  transition: all 0.3s ease;
+  padding: 0;
+  margin: 0;
+  color: var(--text);
 }
 
 .bin-bottom {
-    width: 12px;
+  width: 12px;
 }
 
 .bin-top {
-    width: 14px;
-    transform-origin: right;
-    transition: transform 0.3s ease;
+  width: 14px;
+  transform-origin: right;
+  transition: transform 0.3s ease;
 }
 
 .bin-button:hover .bin-top {
-    transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .bin-button:hover {
-    background-color: #f15a5a;
+  background-color: #f15a5a;
 }
 
 .bin-button:active {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .blacklist li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 16px;
-    background-color: var(--surface0);
-    border-radius: 12px;
-    gap: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background-color: var(--surface0);
+  border-radius: 12px;
+  gap: 8px;
 }
 
 .sort-button {
-    width: 160px;
-    height: 56px;
-    border-radius: 28px;
-    background-color: var(--surface0);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    overflow: hidden;
-    margin: 0 auto;
-    padding: 0;
-    border: none;
-    outline: none;
+  width: 160px;
+  height: 56px;
+  border-radius: 28px;
+  background-color: var(--surface0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0;
+  border: none;
+  outline: none;
 }
 
 .IconContainer {
-    width: 42px;
-    height: 42px;
-    background: var(--mauve);
-    border-radius: 21px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    z-index: 2;
-    transition-duration: 0.3s;
+  width: 42px;
+  height: 42px;
+  background: var(--mauve);
+  border-radius: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+  transition-duration: 0.3s;
 }
 
 .icon {
-    width: 1.2em;
-    height: 1.2em;
+  width: 1.2em;
+  height: 1.2em;
 }
 
 .text {
-    height: 100%;
-    width: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text);
-    z-index: 1;
-    transition-duration: 0.3s;
-    font-size: 0.9em;
-    margin: 0;
+  height: 100%;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  z-index: 1;
+  transition-duration: 0.3s;
+  font-size: 0.9em;
+  margin: 0;
 }
 
 .sort-button:hover .IconContainer {
-    width: 90px;
-    transition-duration: 0.3s;
+  width: 90px;
+  transition-duration: 0.3s;
 }
 
 .sort-button:hover .text {
-    transform: translate(10px);
-    width: 0;
-    font-size: 0;
-    transition-duration: 0.3s;
+  transform: translate(10px);
+  width: 0;
+  font-size: 0;
+  transition-duration: 0.3s;
 }
 
 .sort-button:active {
-    transform: scale(0.95);
-    transition-duration: 0.3s;
+  transform: scale(0.95);
+  transition-duration: 0.3s;
 }
 
 .sort-button .text {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .mdc-list-item {
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    opacity: 0;
-    transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(10px);
 }
 
 body {
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont,
+    sans-serif;
 }
 
 .mdc-list-item__text {
-    font-weight: 500;
+  font-weight: 500;
 }
