@@ -20,7 +20,10 @@
     },
     "content_scripts": [
         {
-            "matches": ["*://*.facebook.com/marketplace*", "*://*.facebook.com/*/marketplace*"],
+            "matches": [
+                "*://*.facebook.com/marketplace*",
+                "*://*.facebook.com/*/marketplace*"
+            ],
             "js": ["content/content.js"]
         }
     ]
